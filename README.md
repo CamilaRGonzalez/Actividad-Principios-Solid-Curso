@@ -97,20 +97,21 @@ order.processOrder("Standard");
 }
 
 # Violaciones encontradas en código base
-1. Single Responsibility Principle: Clase principal OrderManager hace todo: procesa la orden, calcula impuestos, genera pdf, envía mails y persiste en sql.
+1. Single Responsibility Principle:  
+Clase principal OrderManager hace todo: procesa la orden, calcula impuestos, genera pdf, envía mails y persiste en sql.
 No tiene una sola razón para cambiar, si se cambia el modo de notificación, el cálculo de impuestos o cualquiera de los procesos que realiza, se debe modificar la clase.
 
-2. Open/Closed Principle:
+2. Open/Closed Principle:  
 Para procesar un nuevo tipo de orden se debe modificar el código de OrderManager
 
-3. Liskov Substitution Principle:
+3. Liskov Substitution Principle:  
 OrderManager no es intercambiable por ReadOnlyOrderManager, ya que, la subclase debe sobreescribir métodos que no soporta
 
-4. Interface Segregation Principle:
+4. Interface Segregation Principle:  
 La interfaz ISuperOrderProcessor es demasiado grande y obliga a las clases que la usen a implementar todos sus métodos, sean estos soportados o no por la clase.
 Además, los métodos no tienen cohesión, cada uno corresponde a una funcionalidad distinta.
 
-5. Dependency Inversion Principle:
+5. Dependency Inversion Principle:  
 La clase Order manager depende de implementaciones concretas (MySQLConnection, EmailService, etc.). 
 No se puede sustituir por otras implementaciones y el sistema queda acoplado a esas clases para realizar sus funciones.
 Si en un futuro cambia la base de datos o la forma de notificación se debe reescribir todo el código
