@@ -97,8 +97,7 @@ order.processOrder("Standard");
 }
 
 # Violaciones encontradas en código base
-1. Single Responsibility Principle:
-\nClase principal OrderManager hace todo: procesa la orden, calcula impuestos, genera pdf, envía mails y persiste en sql.
+1. Single Responsibility Principle: Clase principal OrderManager hace todo: procesa la orden, calcula impuestos, genera pdf, envía mails y persiste en sql.
 No tiene una sola razón para cambiar, si se cambia el modo de notificación, el cálculo de impuestos o cualquiera de los procesos que realiza, se debe modificar la clase.
 
 2. Open/Closed Principle:
