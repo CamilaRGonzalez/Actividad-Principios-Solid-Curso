@@ -118,27 +118,27 @@ Si en un futuro cambia la base de datos o la forma de notificación se debe rees
 
 
 # Principios aplicados y mejoras en el código
-1. Single Responsibility Principle:
-Se separan todas las funcionalidades en distintas clases que hagan 1 sola cosa:
-TaxCalculator → calcula impuestos
-PDFGenerator → genera PDFs
-EmailNotificator → envía mails
-OrderRepository → guarda en base de datos
-ExpressOrderProcessor y StandardOrderProcessor → procesan la orden
-OrderProcessorFactory → decide que tipo de procesador instanciar
-OrderManager → coordina la operación
-ReadonlyOrderManager → coordina sin persistir datos o enviar notificaciones
+1. Single Responsibility Principle:  
+Se separan todas las funcionalidades en distintas clases que hagan 1 sola cosa:  
+TaxCalculator → calcula impuestos  
+PDFGenerator → genera PDFs  
+EmailNotificator → envía mails  
+OrderRepository → guarda en base de datos  
+ExpressOrderProcessor y StandardOrderProcessor → procesan la orden  
+OrderProcessorFactory → decide que tipo de procesador instanciar  
+OrderManager → coordina la operación  
+ReadonlyOrderManager → coordina sin persistir datos o enviar notificaciones  
 
-2. Open/Closed Principle:
+2. Open/Closed Principle:  
 Se puede agregar nuevo tipo de orden agregando una nueva clase que implemente la interfaz ProcesadorOrden 
 y modificando solo OrderProcessorFactory, que va a ser la única clase encargada de decidir que tipo de procesador instanciar.
 
-3. Liskov Substitution Principle:
+3. Liskov Substitution Principle:  
 ReadonlyOrderManager ahora sustituye correctamente a OrderManager ya que ambas implementan la misma interfaz. Las dos implementaciones pueden reemplazarse sin romper nada.
 
-4. Interface Segregation Principle:
+4. Interface Segregation Principle:  
 Se separaron los métodos de la interfaz original en varias interfaces específicas de cada funcionalidad. Ahora los clientes implementan solo lo que necesitan.
 
-5. Dependency Inversion Principle:
+5. Dependency Inversion Principle:  
 OrderManager y ReadOnlyOrderManager ahora inyectan sus dependencias por constructor a partir de abstracciones (interfaces). Esto permite que no estén acoplados
 a implementaciones concretas y que se puedan intercambiar si algo cambia en el futuro (ej: cambia MySQL por Dynamo, PostgreSQL, etc.)
